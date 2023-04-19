@@ -3,24 +3,23 @@
 //두 가지 방법을 두루두루 사용하자!
 
 import './App.css';
+import {useState} from 'react'
+
 
 function App() {
+  // let name = "mario";
+  const [name, setName] = useState('mario');
+
+  const clickHandler = () =>{
+    // name = "luigi";
+    setName('luigi');
+    console.log(name);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src="/logo.svg" className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React & Firebase
-        </a>
-      </header>
+      <h1>My name is {name}</h1>
+      <button onClick={clickHandler}>change name</button>
     </div>
   );
 }
