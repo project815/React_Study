@@ -17,9 +17,9 @@ function App() {
     {title: "race on moo moo farm", id: 3},
   ])
   const [showEvent, setShowEvent] = useState(true);
-  const [closeEvent, setCloseEvent] = useState(true);
+  const [showModalEvent, setShowModalEvent] = useState(false);
   
-  console.log(closeEvent);
+  console.log(showModalEvent);
 
   const clickHandler = (id) =>{
     // name = "luigi";
@@ -36,8 +36,8 @@ function App() {
     console.log("실행", id);
   }
 
-  const closeHandler = ()=>{
-    setCloseEvent(false);
+  const ModalHandler = ()=>{
+    setShowModalEvent(true);
   }
 
   const subtitle = "All the latest Event in MarioLand";
@@ -50,12 +50,15 @@ function App() {
         <h2>10% 0ff Coupon Code!!</h2>
         <p>Use the code INAK10 at the checkout!</p>
       </Modal> */}
-      {closeEvent &&(
-        <Modal handleClose={closeHandler}>
+      {showModalEvent &&(
+        <Modal handleClose>
         <h2>Term and Conditions</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
         <a href='https://www.naver.com'>find more out...</a>
+        <br/>
+       <button onClick={()=>setShowModalEvent(false)}>close</button>
       </Modal>)}
+
       {showEvent && (
         <div>
         <button onClick={()=>setShowEvent(false)}>hide button</button>
@@ -65,19 +68,19 @@ function App() {
         <div>
         <button onClick={()=>setShowEvent(true)}>show button</button>
       </div>
-      )
+      )}
 
-      }
+      <div>
+        <button onClick={()=>setShowModalEvent(true)}>show Panel</button>
+      </div>
+
             {/* <h1>My name is {name}</h1> */}
       {/* <button onClick={clickHandler}>change name</button> */}
       {
         showEvent && events.map((event, index)=>(
           <React.Fragment key={event.id}>
               <h2>{"index : " + index}{", event.id : "+ event.id}{", event.title : " +event.title}</h2>
-              {/* <button onClick={(clickHandler(event.id))}>onClick</button> 바로실행 되어버림, 클릭해도 실행안됨 */}
-              <button onClick={()=>(clickHandler(event.id))}>Delete event</button>
-          </React.Fragment>
-        ))
+              {/* <button onClick={(clickHandler(event.id))}>onClick</button> 바로실행 되어버림, 클릭해도 실행안됨 */} <button onClick={()=>(clickHandler(event.id))}>Delete event</button> </React.Fragment>))
       }
     </div>
   );
