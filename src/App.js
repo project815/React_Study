@@ -3,7 +3,7 @@
 //두 가지 방법을 두루두루 사용하자!
 
 import './App.css';
-import {useState} from 'react'
+import React, {useState} from 'react'
 import Title from './components/title'
 
 
@@ -36,7 +36,7 @@ function App() {
 
   }
 
-  const subtitle = "All the latest events in MarioLand";
+  const subtitle = "All the latest Event in MarioLand";
   return (
     <div className="App">
       <Title title="Event is Your Area" subtitle={subtitle} />
@@ -57,11 +57,11 @@ function App() {
       {/* <button onClick={clickHandler}>change name</button> */}
       {
         showEvent && events.map((event, index)=>(
-          <div key={event.id}>
+          <React.Fragment key={event.id}>
               <h2>{"index : " + index}{", event.id : "+ event.id}{", event.title : " +event.title}</h2>
               {/* <button onClick={(clickHandler(event.id))}>onClick</button> 바로실행 되어버림, 클릭해도 실행안됨 */}
               <button onClick={()=>(clickHandler(event.id))}>Delete event</button>
-          </div>
+          </React.Fragment>
         ))
       }
     </div>
