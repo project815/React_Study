@@ -16,9 +16,10 @@ function App() {
     {title: "bower's live stream", id:2},
     {title: "race on moo moo farm", id: 3},
   ])
-
   const [showEvent, setShowEvent] = useState(true);
-  console.log(showEvent);
+  const [closeEvent, setCloseEvent] = useState(true);
+  
+  console.log(closeEvent);
 
   const clickHandler = (id) =>{
     // name = "luigi";
@@ -33,7 +34,10 @@ function App() {
       })
     })
     console.log("실행", id);
+  }
 
+  const closeHandler = ()=>{
+    setCloseEvent(false);
   }
 
   const subtitle = "All the latest Event in MarioLand";
@@ -46,12 +50,12 @@ function App() {
         <h2>10% 0ff Coupon Code!!</h2>
         <p>Use the code INAK10 at the checkout!</p>
       </Modal> */}
-      <Modal>
+      {closeEvent &&(
+        <Modal handleClose={closeHandler}>
         <h2>Term and Conditions</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
         <a href='https://www.naver.com'>find more out...</a>
-      </Modal>
-      
+      </Modal>)}
       {showEvent && (
         <div>
         <button onClick={()=>setShowEvent(false)}>hide button</button>
