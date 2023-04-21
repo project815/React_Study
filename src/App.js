@@ -7,15 +7,16 @@ import {useState} from 'react'
 import Title from './components/title'
 import Modal from './components/Modal'
 import DeleteList from './components/EventList'
+import NewEventForm from './components/NewEventForm'
 
 function App() {
   // let name = "mario";
   // const [name, setName] = useState('mario');
 
   const [events, setEvents] = useState([
-    {title: "mario's birthday bash", id: 1},
-    {title: "bower's live stream", id:2},
-    {title: "race on moo moo farm", id: 3},
+    // {title: "mario's birthday bash", id: 1},
+    // {title: "bower's live stream", id:2},
+    // {title: "race on moo moo farm", id: 3},
   ])
   const [showEvent, setShowEvent] = useState(true);
   const [showModalEvent, setShowModalEvent] = useState(false);
@@ -41,6 +42,13 @@ function App() {
     setShowModalEvent(true);
   }
 
+  const addEvent = (event) => {
+    setEvents((pres) =>
+    {
+      return [...pres, event]
+    })
+  }
+
   const subtitle = "All the latest Event in MarioLand";
   return (
     <div className="App">
@@ -53,10 +61,11 @@ function App() {
       </Modal> */}
       {showModalEvent &&(
         <Modal handleClose clickHandler={setShowModalEvent} isSaleModal={true}>
-        <h2>Term and Conditions</h2>
+          <NewEventForm addEvent={addEvent}></NewEventForm>
+        {/* <h2>Term and Conditions</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
         <a href='https://www.naver.com'>find more out...</a>
-        <br/>
+        <br/> */}
        {/* <button onClick={()=>setShowModalEvent(false)}>close</button> */}
       </Modal>)}
 
