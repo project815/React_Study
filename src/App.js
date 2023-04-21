@@ -52,12 +52,12 @@ function App() {
         <p>Use the code INAK10 at the checkout!</p>
       </Modal> */}
       {showModalEvent &&(
-        <Modal handleClose>
+        <Modal handleClose clickHandler={setShowModalEvent} isSaleModal={true}>
         <h2>Term and Conditions</h2>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
         <a href='https://www.naver.com'>find more out...</a>
         <br/>
-       <button onClick={()=>setShowModalEvent(false)}>close</button>
+       {/* <button onClick={()=>setShowModalEvent(false)}>close</button> */}
       </Modal>)}
 
       {showEvent && (
