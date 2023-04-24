@@ -1,27 +1,34 @@
+import './TripList.css';
 import {useState, useEffect} from 'react';
+
 export default function TripList () {
     const [trips, setTrips] = useState([])
+    const [url, setUrl] = useState('http://localhost:3000/trips')
 
     useEffect(() => {
-        fetch('http://localhost:3000/trips')
+        fetch(url)
         .then(response => response.json())
         // .then(json => console.log(json))
         .then(json => setTrips(json))
-    }, [])
+    }, [url])
 
     console.log(trips);
 
-const str = toString(trips);
   return (
-    <div>
+    <div className='trip-list'>
         <h2>Trip List</h2>
         <ul>
-            {trips.map(trip =>(
-                <li>{trip.id}</li>
-                <li>{trip.tjtle}</li>
-                <li>{trip.id}</li>
+            {trips.map(trip => (
+                <li key={trip.id}>
+                    <h3>{trip.title}</h3>
+                    <p>{trip.price}</p>
+                </li>
             ))}
         </ul>
+        <div className="filters">
+            <button onClick={()=>setUrl('http://localhost:3000/trips?loc=europe')}>European Trips</button>
+            <button onClick={()=>setUrl('http://localhost:3000/trips')}>All Trips</button>
+        </div>
     </div>
   )
 }
