@@ -1,14 +1,53 @@
 /** @format */
 
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function App() {
-  const item = useState(0)[1];
-  const item2 = useState(0)[2];
+const App = () => {
+  const [item, setItem] = useState(0);
 
-  console.log(item, item2);
-  return <div className="App"></div>;
+  const incrementItem = () => setItem(item + 1);
+  const decrementItem = () => setItem(item - 1);
+
+  return (
+    <div className="App">
+      {item}
+      <button onClick={incrementItem}>+</button>
+      <button onClick={decrementItem}>-</button>
+    </div>
+  );
+};
+
+class AppUgly extends React.Component {
+  state = {
+    item: 1,
+  };
+  render() {
+    const { item } = this.state;
+
+    return (
+      <div className="App">
+        {item}
+        <button onClick={this.incrementItem}>+</button>
+        <button onClick={this.decrementItem}>-</button>
+      </div>
+    );
+  }
+
+  incrementItem = () => {
+    this.setState((state) => {
+      return {
+        item: state.item + 1,
+      };
+    });
+  };
+  decrementItem = () => {
+    this.setState((state) => {
+      return {
+        item: state.item - 1,
+      };
+    });
+  };
 }
 
 export default App;
